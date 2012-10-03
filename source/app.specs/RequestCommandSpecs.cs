@@ -27,10 +27,12 @@ namespace app.specs
       Because b = () =>
         result = sut.can_handle(request);
 
-      It should_make_ITs_decicision_by_using_its_request_specification = () =>
+      It should_make_its_decicision_by_using_its_request_specification = () =>
         result.ShouldBeTrue();
 
+        
       static bool result;
+      static bool was_used;
       static IEncapsulateRequestDetails request;
     }
   }
