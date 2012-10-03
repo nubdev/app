@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Data;
+using System.Security;
+using System.Security.Principal;
+using System.Threading;
 using Machine.Specifications;
+using Rhino.Mocks;
 using developwithpassion.specifications.rhinomocks;
 using developwithpassion.specifications.extensions;
 
@@ -8,11 +12,51 @@ namespace app.specs
 {
   public class CalculatorSpecs
   {
+    [Subject(typeof(Calculator))]
     public abstract class concern : Observes<Calculator>
     {
       
     }
 
+    public class when_created : concern
+    {
+      Establish c = () =>
+      {
+        connection = depends.on<IDbConnection>();
+      };
+
+      It should_not_leverage_its_connection_at_all = () =>
+      {
+        connection.never_received(x => x.Open());
+        connection.never_received(x => x.CreateCommand());
+      };
+
+      static IDbConnection connection;
+         
+    }
+
+    public class when_turning_off_the_calculator : concern
+    {
+      Because b = () =>
+        sut.shut_off();
+
+      public class and_they_are_not_in_the_right_security_role
+      {
+        Establish c = () =>
+        {
+          the_principal = fake.an<IPrincipal>();
+
+          the_principal.setup(x => x.IsInRole(Arg<string>.Is.Anything)).Return(false);
+
+          spec.change(() => Thread.CurrentPrincipal).to(the_principal);
+        };
+
+        It should_throw_a_security_exception = () =>
+          spec.exception_thrown.ShouldBeAn<SecurityException>();
+
+        static IPrincipal the_principal;
+      }
+    }
     public class when_adding_two_numbers : concern
     {
       //Arrange

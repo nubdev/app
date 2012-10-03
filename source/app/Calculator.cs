@@ -18,8 +18,18 @@ namespace app
         secondNumber < 0)
         throw new ArgumentException();
 
-      connection.Open();
+      using (connection)
+      using (var command = connection.CreateCommand())
+      {
+        connection.Open();
+        command.ExecuteNonQuery();
+      }
       return firstNumber + secondNumber;
+    }
+
+    public void shut_off()
+    {
+      throw new NotImplementedException();
     }
   }
 }
