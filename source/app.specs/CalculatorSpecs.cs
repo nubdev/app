@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Machine.Specifications;
 using developwithpassion.specifications.rhinomocks;
 using developwithpassion.specifications.extensions;
@@ -17,7 +18,7 @@ namespace app.specs
       //Arrange
       Establish c = () =>
       {
-        
+        connection = depends.on<IDbConnection>();
       };
 
       //Act
@@ -28,7 +29,11 @@ namespace app.specs
       It should_return_the_sum = () =>
         result.ShouldEqual(5);
 
+      It should_open_a_Connection_to_The_db = () =>
+        connection.received(x => x.Open());
+
       static int result;
+      static IDbConnection connection;
     }
 
     public class when_attempting_to_ADd_a_negative_ToA_p_ositive   : concern
