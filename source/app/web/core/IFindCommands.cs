@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System;
 using System.Linq;
 
 namespace app.web.core
@@ -11,17 +10,18 @@ namespace app.web.core
 
   public class CommandRegistry : IFindCommands
   {
+    CreateMissingCommand_Behaviour missing_command_factory;
+    IEnumerable<IProcessOneRequest> commands { get; set; }
 
-    private IEnumerable<IProcessOneRequest> commands { get; set; }
-
-    public CommandRegistry(IEnumerable<IProcessOneRequest> aCommandList)
+    public CommandRegistry(IEnumerable<IProcessOneRequest> all_commands,CreateMissingCommand_Behaviour missing_command_factory)
     {
-        commands = aCommandList;
+      this.missing_command_factory = missing_command_factory;
+      commands = all_commands;
     }
+
     public IProcessOneRequest get_the_command_that_can_process(IEncapsulateRequestDetails request)
     {
-        return commands.First(x => x.can_handle(request));
-        return null;
+      return commands.FirstOrDefault(x => x.can_handle(request)) ?? missing_command_factory();
     }
   }
 }
