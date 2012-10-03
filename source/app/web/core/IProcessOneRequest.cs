@@ -15,7 +15,7 @@
 
     public bool can_handle(IEncapsulateRequestDetails request)
     {
-      throw new System.NotImplementedException();
+        return true;
     }
   }
 }
