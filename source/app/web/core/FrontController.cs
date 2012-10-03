@@ -6,9 +6,17 @@
   }
   public class FrontController : IProcessRequests
   {
+      public FrontController(IFindCommands findCommands)
+      {
+          this.findCommands = findCommands;
+      }
+
+      IFindCommands findCommands;
+
     public void handle(object request)
     {
-      throw new System.NotImplementedException();
+        var commandToExecute = findCommands.get_the_command_that_can_process(request);
+        commandToExecute.process(request);
     }
   }
 }
