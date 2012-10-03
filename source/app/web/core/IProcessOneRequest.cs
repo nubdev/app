@@ -2,6 +2,7 @@
 {
   public interface IProcessOneRequest
   {
-    void process(object request);
+    void process(IEncapsulateRequestDetails request);
+    bool can_handle(IEncapsulateRequestDetails request);
   }
 }

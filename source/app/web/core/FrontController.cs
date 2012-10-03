@@ -2,21 +2,21 @@
 {
   public interface IProcessRequests
   {
-    void handle(object request);
+    void handle(IEncapsulateRequestDetails request);
   }
+
   public class FrontController : IProcessRequests
   {
-      public FrontController(IFindCommands findCommands)
-      {
-          this.findCommands = findCommands;
-      }
+    IFindCommands command_registry;
 
-      IFindCommands findCommands;
-
-    public void handle(object request)
+    public FrontController(IFindCommands command_registry)
     {
-        var commandToExecute = findCommands.get_the_command_that_can_process(request);
-        commandToExecute.process(request);
+      this.command_registry = command_registry;
+    }
+
+    public void handle(IEncapsulateRequestDetails request)
+    {
+      command_registry.get_the_command_that_can_process(request).process(request);
     }
   }
 }

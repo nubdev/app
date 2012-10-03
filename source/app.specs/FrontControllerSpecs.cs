@@ -20,9 +20,10 @@ namespace app.specs
 
       Establish c = () =>
       {
-        command_that_Can_handle_request = fake.an<IProcessOneRequest>();
         command_registry = depends.on<IFindCommands>();
-        request = new object();
+        command_that_Can_handle_request = fake.an<IProcessOneRequest>();
+
+        request = fake.an<IEncapsulateRequestDetails>();
 
         command_registry.setup(x => x.get_the_command_that_can_process(request))
           .Return(command_that_Can_handle_request);
@@ -36,7 +37,7 @@ namespace app.specs
         command_that_Can_handle_request.received(x => x.process(request));
 
       static IProcessOneRequest command_that_Can_handle_request;
-      static object request;
+      static IEncapsulateRequestDetails request;
       static IFindCommands command_registry;
     }
   }
