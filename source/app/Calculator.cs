@@ -3,33 +3,42 @@ using System.Data;
 
 namespace app
 {
-  public class Calculator
-  {
-    IDbConnection connection;
+    using System.Security;
+    using System.Security.Principal;
+    using System.Threading;
 
-    public Calculator(IDbConnection connection)
+    public class Calculator
     {
-      this.connection = connection;
-    }
+        IDbConnection connection;
 
-    public int add(int firstNumber, int secondNumber)
-    {
-      if (firstNumber < 0 ||
-        secondNumber < 0)
-        throw new ArgumentException();
+        public Calculator(IDbConnection connection)
+        {
+            this.connection = connection;
+        }
 
-      using (connection)
-      using (var command = connection.CreateCommand())
-      {
-        connection.Open();
-        command.ExecuteNonQuery();
-      }
-      return firstNumber + secondNumber;
-    }
+        public int add(int firstNumber, int secondNumber)
+        {
+            if (firstNumber < 0 ||
+              secondNumber < 0)
+                throw new ArgumentException();
 
-    public void shut_off()
-    {
-      throw new NotImplementedException();
+            using (connection)
+            using (var command = connection.CreateCommand())
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            return firstNumber + secondNumber;
+        }
+
+        public void shut_off()
+        {
+            IPrincipal userPrincipal = Thread.CurrentPrincipal;
+            if (!userPrincipal.IsInRole("Admin"))
+            {
+                throw new SecurityException();
+            }
+
+        }
     }
-  }
 }
