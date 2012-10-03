@@ -19,6 +19,9 @@ namespace app.specs
       Establish c = () =>
       {
         connection = depends.on<IDbConnection>();
+        command = fake.an<IDbCommand>();
+
+        connection.setup(x => x.CreateCommand()).Return(command);
       };
 
       //Act
@@ -32,8 +35,12 @@ namespace app.specs
       It should_open_a_Connection_to_The_db = () =>
         connection.received(x => x.Open());
 
+      It should_runa_QU_ery = () =>
+        command.received(x => x.ExecuteNonQuery());
+
       static int result;
       static IDbConnection connection;
+      static IDbCommand command;
     }
 
     public class when_attempting_to_add_a_negative_to_a_positive   : concern

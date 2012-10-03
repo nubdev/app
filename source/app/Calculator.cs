@@ -1,25 +1,25 @@
 ﻿using System;
+using System.Data;
 
 namespace app
 {
-    using System.Data;
+  public class Calculator
+  {
+    IDbConnection connection;
 
-    public class Calculator
+    public Calculator(IDbConnection connection)
     {
-        IDbConnection connection;
-      public Calculator(IDbConnection dbConnection)
-      {
-          connection = dbConnection;
-      }
+      this.connection = connection;
+    }
 
-      public int add(int firstNumber, int secondNumber)
+    public int add(int firstNumber, int secondNumber)
     {
-        if(firstNumber < 0 ||
-            secondNumber < 0)
-            throw new ArgumentException();
+      if (firstNumber < 0 ||
+        secondNumber < 0)
+        throw new ArgumentException();
 
-          connection.Open();
-        return firstNumber + secondNumber;
+      connection.Open();
+      return firstNumber + secondNumber;
     }
   }
 }
