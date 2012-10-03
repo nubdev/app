@@ -31,7 +31,7 @@ namespace app.specs
       static int result;
     }
 
-    public class when_attempting_to_ADd_a_negative_ToA_p_ositive   : concern
+    public class when_attempting_to_add_a_negative_to_a_positive   : concern
     {
       //Arrange
       Establish c = () =>
@@ -44,7 +44,7 @@ namespace app.specs
         spec.catch_exception(() => sut.add(2, 3));
 
       //Assert
-      It should_THrow_an_argument_Exception = () =>
+      It should_throw_an_argument_exception = () =>
         spec.exception_thrown.ShouldBeAn<ArgumentException>();
 
       static int result;
