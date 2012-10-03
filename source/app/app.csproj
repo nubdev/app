@@ -84,6 +84,7 @@
     <Compile Include="web\core\IEncapsulateRequestDetails.cs" />
     <Compile Include="web\core\IFindCommands.cs" />
     <Compile Include="web\core\IProcessOneRequest.cs" />
+    <Compile Include="web\core\MatchRequest_Behaviour.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
