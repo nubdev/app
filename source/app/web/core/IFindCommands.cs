@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace app.web.core
 {
@@ -19,13 +20,7 @@ namespace app.web.core
     }
     public IProcessOneRequest get_the_command_that_can_process(IEncapsulateRequestDetails request)
     {
-     foreach (IProcessOneRequest processor in commands)
-     {
-         if ( processor.can_handle(request) )
-         {
-             return processor;
-         }
-     }
+        return commands.First(x => x.can_handle(request));
         return null;
     }
   }
