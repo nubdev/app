@@ -8,14 +8,20 @@
 
   public class RequestCommand : IProcessOneRequest
   {
-    public void process(IEncapsulateRequestDetails request)
+      MatchRequest_Behaviour behaviour;
+      public RequestCommand(MatchRequest_Behaviour behavior)
+      {
+          this.behaviour = behavior;
+      }
+
+      public void process(IEncapsulateRequestDetails request)
     {
       throw new System.NotImplementedException();
     }
 
     public bool can_handle(IEncapsulateRequestDetails request)
     {
-        return true;
+        return behaviour(request);
     }
   }
 }
