@@ -28,10 +28,11 @@ namespace app.specs
 
           all_the_possible_commands = Enumerable.Range(1,100).Select(x => fake.an<IProcessOneRequest>()).ToList();
           all_the_possible_commands.Add(the_command_that_can_handle);
-          the_command_that_can_handle.setup(x => x.can_handle(request)).Return(true);
+          the_command_that_can_handle.setup(x => x.can_handle(request)).Return(true); 
 
           depends.on<IEnumerable<IProcessOneRequest>>(all_the_possible_commands);
         };
+          
 
         Because b = () =>
           result = sut.get_the_command_that_can_process(request);
@@ -45,6 +46,27 @@ namespace app.specs
         static List<IProcessOneRequest> all_the_possible_commands;
       } 
         
+      public class and_it_does_not_have_the_command 
+      {
+        Establish c = () =>
+        {
+          request = fake.an<IEncapsulateRequestDetails>();
+          the_special_case = fake.an<IProcessOneRequest>();
+
+          depends.on<CreateMissingCommand_Behaviour>(() =>  the_special_case); 
+          depends.on(Enumerable.Range(1,100).Select(x => fake.an<IProcessOneRequest>()));
+        };
+
+        Because b = () =>
+          result = sut.get_the_command_that_can_process(request);
+
+        It should_return_the_special_case  = () =>
+          result.ShouldEqual(the_special_case);
+
+        static IProcessOneRequest result;
+        static IProcessOneRequest the_special_case  ;
+        static IEncapsulateRequestDetails request;
+      } 
     }
   }
 }
