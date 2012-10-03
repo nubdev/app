@@ -32,7 +32,7 @@ namespace app.specs
       Because b = () =>
         sut.handle(request);
         
-      It should_delegate_the_processing_to_the_Command_that_can_handle_The_request = () =>
+      It should_delegate_processing_to_the_command_that_can_process_the_request = () =>
         command_that_Can_handle_request.received(x => x.process(request));
 
       static IProcessOneRequest command_that_Can_handle_request;
