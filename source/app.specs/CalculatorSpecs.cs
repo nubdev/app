@@ -1,4 +1,5 @@
-﻿using System;
+
+using System;
 using System.Data;
 using System.Security;
 using System.Security.Principal;
