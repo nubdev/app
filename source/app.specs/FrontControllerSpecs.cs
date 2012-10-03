@@ -28,6 +28,7 @@ namespace app.specs
           .Return(command_that_Can_handle_request);
       };
 
+
       Because b = () =>
         sut.handle(request);
         
