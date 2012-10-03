@@ -11,9 +11,9 @@ namespace app.web.application.catalogbrowsing.stubs
         }
 
 
-      public IEnumerable<DepartmentItem> get_departments_in(DepartmentItem parent)
+      public IEnumerable<DepartmentItem> get_departments_using(ViewSubDepartmentRequest request)
       {
-            return Enumerable.Range(1,50).Select(x => new DepartmentItem { name = x.ToString("Department 0") });
+            return Enumerable.Range(1,50).Select(x => new DepartmentItem { name = x.ToString("Sub Department 0") });
       }
     }
 }

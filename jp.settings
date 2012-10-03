@@ -4,6 +4,6 @@ config =
   :kill_runner_processes => true,
   :iis_express => 'c:\utils\iis_express\iisexpress.exe',
   :browser => 'C:\utils\firefox\firefox.exe',
-  :start_url => "http://localhost:8080/views/default.aspx"
+  :start_url => "http://localhost:8080/blah.chicago"
 }
 configatron.configure_from_hash config

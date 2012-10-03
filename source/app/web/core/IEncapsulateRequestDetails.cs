@@ -1,9 +1,7 @@
-﻿using app.web.application.catalogbrowsing;
-
-namespace app.web.core
+﻿namespace app.web.core
 {
   public interface IEncapsulateRequestDetails
   {
-    DepartmentItem parent_department { get; }
+    InputModel map<InputModel>();
   }
 }

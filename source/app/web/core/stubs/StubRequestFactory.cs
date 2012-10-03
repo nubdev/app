@@ -12,7 +12,11 @@ namespace app.web.core.stubs
 
     class StubRequest : IEncapsulateRequestDetails
     {
-      public DepartmentItem parent_department { get; private set; }
+      InputModel IEncapsulateRequestDetails.map<InputModel>()
+      {
+        object item = new ViewSubDepartmentRequest();
+        return (InputModel) item;
+      }
     }
   }
 }

@@ -1,4 +1,6 @@
-﻿using app.web.core;
+﻿using app.web.application.catalogbrowsing.stubs;
+using app.web.core;
+using app.web.core.stubs;
 
 namespace app.web.application.catalogbrowsing
 {
@@ -13,10 +15,13 @@ namespace app.web.application.catalogbrowsing
       this.display_engine = display_engine;
     }
 
+    public ViewSubDepartments():this(new StubDepartmentRepository(),new StubDisplayEngine())
+    {
+    }
+
     public void process(IEncapsulateRequestDetails request)
     {
-      var sub_departments = department_repository.get_departments_in(request.parent_department);
-      display_engine.display(sub_departments);
+      display_engine.display(department_repository.get_departments_using(request.map<ViewSubDepartmentRequest>()));
     }
   }
 }

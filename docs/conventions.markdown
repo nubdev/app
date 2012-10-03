@@ -13,3 +13,4 @@
 
   1. 1 Logical view per report model
   2. 1 Command Per Feature
+  3. One Model In - One Model out
