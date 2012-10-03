@@ -41,7 +41,7 @@ namespace app.specs
 
       //Act
       Because b = () =>
-        spec.catch_exception(() => sut.add(2, 3));
+        spec.catch_exception(() => sut.add(-2, 3));
 
       //Assert
       It should_THrow_an_argument_Exception = () =>
