@@ -37,10 +37,7 @@ namespace app.specs
 
     public class when_turning_off_the_calculator : concern
     {
-      Because b = () =>
-        sut.shut_off();
-
-      public class and_they_are_not_in_the_right_security_role
+      public class and_they_are_not_in_the_right_security_role:concern
       {
         Establish c = () =>
         {
@@ -50,6 +47,9 @@ namespace app.specs
 
           spec.change(() => Thread.CurrentPrincipal).to(the_principal);
         };
+
+        Because b = () =>
+          spec.catch_exception(() => sut.shut_off());
 
         It should_throw_a_security_exception = () =>
           spec.exception_thrown.ShouldBeAn<SecurityException>();
