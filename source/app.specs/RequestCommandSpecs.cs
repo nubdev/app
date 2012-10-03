@@ -1,6 +1,7 @@
 ﻿using Machine.Specifications;
 using app.web.core;
 using developwithpassion.specifications.rhinomocks;
+using developwithpassion.specifications.extensions;
 
 namespace app.specs
 {
@@ -33,6 +34,25 @@ namespace app.specs
         
       static bool result;
       static bool was_used;
+      static IEncapsulateRequestDetails request;
+    }
+
+    public class when_processing_a_request : concern
+    {
+      Establish c = () =>
+      {
+        request = fake.an<IEncapsulateRequestDetails>();
+        feature = depends.on<ISupportAUserFeature>();
+      };
+
+      Because b = () =>
+        sut.process(request);
+
+
+      It should_trigger_the_application_feature = () =>
+        feature.received(x => x.process(request));
+        
+      static ISupportAUserFeature feature;
       static IEncapsulateRequestDetails request;
     }
   }
