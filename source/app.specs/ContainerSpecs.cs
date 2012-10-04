@@ -18,7 +18,6 @@ namespace app.specs
    
     public class when_fetching_a_dependency : concern
     {
-        
       It should_ = () =>        
         
     }
