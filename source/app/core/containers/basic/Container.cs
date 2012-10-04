@@ -28,7 +28,15 @@ namespace app.core.containers.basic
 
     public object an(Type dependency)
     {
-      throw new NotImplementedException();
+        try
+        {
+            var factory = factories.get_the_factory_that_can_create(dependency);
+            return factory.create();
+        }
+        catch (Exception e)
+        {
+            throw failure_behaviour(dependency, e);
+        }
     }
   }
 }
