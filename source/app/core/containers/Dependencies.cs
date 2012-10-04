@@ -11,7 +11,7 @@ namespace app.core.containers
 
     public static IFetchDependencies fetch
     {
-      get { throw new System.NotImplementedException(); }
+      get { return container_resolution();}
     }
   }
 }

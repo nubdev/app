@@ -1,20 +1,17 @@
-﻿ using Machine.Specifications;
- using app.core.containers;
- using developwithpassion.specifications.rhinomocks;
- using developwithpassion.specifications.extensions;
+﻿using Machine.Specifications;
+using app.core.containers;
+using developwithpassion.specifications.rhinomocks;
 
 namespace app.specs
-{  
-  [Subject(typeof(Dependencies))]  
+{
+  [Subject(typeof(Dependencies))]
   public class DependenciesSpecs
   {
     public abstract class concern : Observes<Dependencies>
     {
-        
     }
 
-   
-    public class when_accessing_the_container_facade   : concern
+    public class when_accessing_the_container_facade : concern
     {
       Establish c = () =>
       {

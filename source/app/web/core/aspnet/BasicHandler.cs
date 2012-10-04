@@ -1,5 +1,5 @@
 ﻿using System.Web;
-using app.web.core.stubs;
+using app.core.containers;
 
 namespace app.web.core.aspnet
 {
@@ -14,12 +14,19 @@ namespace app.web.core.aspnet
       this.request_factory = request_factory;
     }
 
+    public BasicHandler():this(Dependencies.fetch.an<IProcessRequests>(),
+      Dependencies.fetch.an<ICreateRequests>())
+    {
+    }
 
     public void ProcessRequest(HttpContext context)
     {
       front_controller.handle(request_factory.create_from(context));
     }
 
-    public bool IsReusable { get { return true; } }
+    public bool IsReusable
+    {
+      get { return true; }
+    }
   }
 }
