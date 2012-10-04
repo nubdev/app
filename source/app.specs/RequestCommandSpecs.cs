@@ -33,7 +33,6 @@ namespace app.specs
 
         
       static bool result;
-      static bool was_used;
       static IEncapsulateRequestDetails request;
     }
 
