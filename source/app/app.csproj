@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="core\containers\basic\Container.cs" />
     <Compile Include="core\containers\Dependencies.cs" />
+    <Compile Include="core\containers\DependencyFactories.cs" />
     <Compile Include="core\containers\GetTheActiveContainer_Behaviour.cs" />
     <Compile Include="core\containers\ICreateOneDependency.cs" />
     <Compile Include="core\containers\IFetchDependencies.cs" />

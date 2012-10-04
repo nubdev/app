@@ -15,15 +15,7 @@ namespace app.core.containers.basic
 
     public Dependency an<Dependency>()
     {
-      try
-      {
-        var factory = factories.get_the_factory_that_can_create(typeof(Dependency));
-        return (Dependency) (factory.create());
-      }
-      catch (Exception e)
-      {
-        throw failure_behaviour(typeof(Dependency), e);
-      }
+      return (Dependency) an(typeof(Dependency));
     }
 
     public object an(Type dependency)
