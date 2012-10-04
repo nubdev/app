@@ -24,7 +24,7 @@ namespace app.specs
                 display_engine = depends.on<IDisplayInformation>();
                 the_items = new List<Item>();
 
-                information_repository.setup ( x => x.map<ViewProductsInADepartmentRequest >()).Return(the_items);
+                information_repository.setup ( x => x.map<ViewTheData>()).Return(the_items);
             };
 
             Because b = () =>
