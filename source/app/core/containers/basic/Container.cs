@@ -2,30 +2,28 @@
 
 namespace app.core.containers.basic
 {
-  public class Container:  IFetchDependencies
+  public class Container : IFetchDependencies
   {
     IFindDependencyFactories factories;
-    private ItemCreationFailure_Behaviour failureBehavior;
+    ItemCreationFailure_Behaviour failure_behaviour;
 
-    public Container(IFindDependencyFactories factories, ItemCreationFailure_Behaviour failureBehavior)
+    public Container(IFindDependencyFactories factories, ItemCreationFailure_Behaviour failure_behaviour)
     {
       this.factories = factories;
-      this.failureBehavior = failureBehavior;
+      this.failure_behaviour = failure_behaviour;
     }
 
     public Dependency an<Dependency>()
     {
-        Dependency item = default(Dependency);
-        try
-        {
-            var factory = factories.get_the_factory_that_can_create(typeof (Dependency));
-            item = (Dependency)(factory.create());
-        }
-        catch (Exception e)
-        {
-            throw failureBehavior.Invoke(typeof (Dependency), e);
-        }
-        return (Dependency)item;
+      try
+      {
+        var factory = factories.get_the_factory_that_can_create(typeof(Dependency));
+        return (Dependency) (factory.create());
+      }
+      catch (Exception e)
+      {
+        throw failure_behaviour(typeof(Dependency), e);
+      }
     }
   }
 }
