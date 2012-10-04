@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="web\application\catalogbrowsing\Authenticator.cs" />
     <Compile Include="web\application\catalogbrowsing\DepartmentItem.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindInformation.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindInformationInTheStore.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="web\core\IFindCommands.cs" />
     <Compile Include="web\core\IProcessOneRequest.cs" />
     <Compile Include="web\core\ISupportAUserFeature.cs" />
+    <Compile Include="web\core\IValidateAUser.cs" />
     <Compile Include="web\core\MatchRequest_Behaviour.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
