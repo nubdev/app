@@ -123,6 +123,8 @@
     <Compile Include="ViewSubDepartmentsSpecs.cs" />
     <Compile Include="ViewTheMainDepartmentsInTheStoreSpecs.cs" />
     <Compile Include="ViewTheProductsInADepartmentSpecs.cs" />
+    <Compile Include="WebFormPageFactorySpecs.cs" />
+    <Compile Include="WebFormsDisplayEngineSpecs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,6 @@
 ﻿using app.web.application.catalogbrowsing.stubs;
 using app.web.core;
-using app.web.core.stubs;
+using app.web.core.aspnet;
 
 namespace app.web.application.catalogbrowsing
 {
@@ -9,14 +9,15 @@ namespace app.web.application.catalogbrowsing
     IFindInformationInTheStore information_in_the_store_repository;
     IDisplayInformation display_engine;
 
-    public ViewTheMainDepartmentsInTheStore(IFindInformationInTheStore information_in_the_store_repository, IDisplayInformation display_engine)
+    public ViewTheMainDepartmentsInTheStore(IFindInformationInTheStore information_in_the_store_repository,
+                                            IDisplayInformation display_engine)
     {
       this.information_in_the_store_repository = information_in_the_store_repository;
       this.display_engine = display_engine;
     }
 
-    public ViewTheMainDepartmentsInTheStore():this(new StubStoreCatalog(),
-      new StubDisplayEngine())
+    public ViewTheMainDepartmentsInTheStore() : this(new StubStoreCatalog(),
+                                                     new WebFormsDisplayEngine())
     {
     }
 

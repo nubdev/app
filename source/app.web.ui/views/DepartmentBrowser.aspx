@@ -8,7 +8,7 @@ CodeFile="DepartmentBrowser.aspx.cs"
     <p class="ListHead">Select An Department</p>
             <table>            
               <%-- for each department --%>
-              <% foreach(var department in ((IEnumerable<DepartmentItem>)Context.Items["blah"]))
+              <% foreach(var department in this.report)
                                                                           { %>
               <tr class="ListItem">
                <td><a href="#"><%= department.name %></a></td>

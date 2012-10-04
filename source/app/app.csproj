@@ -89,6 +89,18 @@
     <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartment.cs" />
     <Compile Include="web\core\aspnet\BasicHandler.cs" />
+    <Compile Include="web\core\aspnet\CreateRawPage_Behaviour.cs" />
+    <Compile Include="web\core\aspnet\GetTheCurrentlyExecutingRequest_Behaviour.cs" />
+    <Compile Include="web\core\aspnet\ICreateViewsForReports.cs" />
+    <Compile Include="web\core\aspnet\IDisplayA.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\core\aspnet\IFindPathsToAspxs.cs" />
+    <Compile Include="web\core\aspnet\IFormatItemsAsHtml.cs" />
+    <Compile Include="web\core\aspnet\stubs\StubPathRegistry.cs" />
+    <Compile Include="web\core\aspnet\WebFormPageFactory.cs" />
+    <Compile Include="web\core\aspnet\WebFormsDisplayEngine.cs" />
+    <Compile Include="web\core\aspnet\IWriteToAStream.cs" />
     <Compile Include="web\core\CreateMissingCommand_Behaviour.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\ICreateRequests.cs" />
@@ -98,7 +110,6 @@
     <Compile Include="web\core\IProcessOneRequest.cs" />
     <Compile Include="web\core\ISupportAUserFeature.cs" />
     <Compile Include="web\core\MatchRequest_Behaviour.cs" />
-    <Compile Include="web\core\stubs\StubDisplayEngine.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
   </ItemGroup>
