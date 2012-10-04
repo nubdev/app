@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="web\application\catalogbrowsing\UserConstrainedQuery.cs" />
     <Compile Include="web\application\catalogbrowsing\DepartmentItem.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindInformation.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindInformationInTheStore.cs" />
@@ -108,7 +109,9 @@
     <Compile Include="web\core\aspnet\IWriteToAStream.cs" />
     <Compile Include="web\core\CreateMissingCommand_Behaviour.cs" />
     <Compile Include="web\core\FrontController.cs" />
+    <Compile Include="web\core\GetTheCurrentUser_Behaviour.cs" />
     <Compile Include="web\core\ICreateRequests.cs" />
+    <Compile Include="web\core\IDetermineIfAUserMeetsACondition.cs" />
     <Compile Include="web\core\IDisplayInformation.cs" />
     <Compile Include="web\core\IEncapsulateRequestDetails.cs" />
     <Compile Include="web\core\IFindCommands.cs" />

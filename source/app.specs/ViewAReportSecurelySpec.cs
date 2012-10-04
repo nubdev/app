@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Security.Principal;
 using Machine.Specifications;
 using app.web.application.catalogbrowsing;
 using app.web.core;
@@ -8,68 +8,48 @@ using developwithpassion.specifications.rhinomocks;
 
 namespace app.specs
 {
-    [Subject(typeof(ViewAReportSecurely<>))]
-    public class ViewAReportSecurelySpecs
+  [Subject(typeof(UserConstrainedQuery<>))]
+  public class ConstainedQuerySpecs
+  {
+    public abstract class concern : Observes<IFetchAReport<AReport>,
+                                      UserConstrainedQuery<AReport>>
     {
-        public abstract class concern : Observes<ISupportAUserFeature,
-                                          ViewAReportSecurely<AReport>>
-        {
-        }
-
-        public class when_viewing_a_report_securely : concern
-        {
-            public class if_user_has_access_to_report : concern
-            {
-                private Establish c = () =>
-                                          {
-                                              request = fake.an<IEncapsulateRequestDetails>();
-                                              display_engine = depends.on<IDisplayInformation>();
-                                              the_report = new AReport();
-                                              query = depends.on<IFetchAReport<AReport>, IFindAccessRights<AReport>>();
-
-                                              query.setup(x => x.fetch_using(request)).Return(the_report);
-                                          };
-
-                private Because b = () =>
-                                    sut.process(request);
-
-                private It should_display_the_report_found_using_the_query = () =>
-                                                                             display_engine.received(
-                                                                                 x => x.display(the_report));
-
-                private static IEncapsulateRequestDetails request;
-                private static IDisplayInformation display_engine;
-                private static AReport the_report;
-                private static IFetchAReport<AReport> query;
-            }
-
-            public class if_user_lacks_access_to_report : concern
-            {
-                private Establish c = () =>
-                {
-                    request = fake.an<IEncapsulateRequestDetails>();
-                    display_engine = depends.on<IDisplayInformation>();
-                    the_report = new AReport();
-                    query = depends.on<IFetchAReport<AReport>, IFindAccessRights<AReport>>();
-
-                    query.setup(x => x.fetch_using(request)).Return(the_report);
-                };
-
-                private Because b = () =>
-                                    spec.catch_exception(sut.process(request));
-
-                private It should_throw_security_access_exception_when_using_the_query = () =>
-                    spec.exception_thrown.ShouldBeAn<SecurityException>();
-
-                private static IEncapsulateRequestDetails request;
-                private static IDisplayInformation display_engine;
-                private static AReport the_report;
-                private static IFetchAReport<AReport> query;
-            }
-        }
-
-        public class AReport
-        {
-        }
     }
+
+    public class when_quering_for_data : concern
+    {
+      public class and_the_user_meets_the_query_specification : concern
+      {
+        Establish c = () =>
+        {
+          request = fake.an<IEncapsulateRequestDetails>();
+          original = depends.on<IFetchAReport<AReport>>();
+          access_rights = depends.on<IDetermineIfAUserMeetsACondition>();
+          principal = fake.an<IPrincipal>();
+          depends.on<GetTheCurrentUser_Behaviour>(() => principal);
+          access_rights.setup(x => x.is_authorized(principal)).Return(true);
+          the_report = new AReport();
+
+          original.setup(x => x.fetch_using(request)).Return(the_report);
+        };
+
+        Because b = () =>
+          result = sut.fetch_using(request);
+
+        It should_run_the_original_query = () =>
+          result.ShouldEqual(the_report);
+
+        static IEncapsulateRequestDetails request;
+        static IFetchAReport<AReport> original;
+        static IPrincipal principal;
+        static IDetermineIfAUserMeetsACondition access_rights;
+        static AReport the_report;
+        static AReport result;
+      }
+    }
+
+    public class AReport
+    {
+    }
+  }
 }

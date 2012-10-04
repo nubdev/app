@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Web;
 using app.web.application.catalogbrowsing;
 using app.web.application.catalogbrowsing.stubs;
 using app.web.core.aspnet;
@@ -15,12 +16,21 @@ namespace app.web.core.stubs
 
     public IEnumerator<IProcessOneRequest> GetEnumerator()
     {
-      yield return new RequestCommand(x => true, new ViewAReport<IEnumerable<ProductItem>>(
-                                                   new GetTheProductsInADepartment()));
+      yield return new RequestCommand(x => true, new ViewAReport<IEnumerable<DepartmentItem>>(
+                                                   secure<GetTheMainDepartments, IEnumerable<DepartmentItem>>(
+                                                     new GetTheMainDepartments())));
+
       yield return new RequestCommand(x => true, new ViewAReport<IEnumerable<DepartmentItem>>(
                                                    new GetTheMainDepartments()));
+
       yield return new RequestCommand(x => true, new ViewAReport<IEnumerable<DepartmentItem>>(
                                                    new GetTheDepartmentsInADepartment()));
+    }
+
+    IFetchAReport<Report> secure<Query,Report>(Query query) where Query : IFetchAReport<Report>
+    {
+      return new UserConstrainedQuery<Report>(null, () => HttpContext.Current.User,
+                                              query);
     }
 
     public class GetTheDepartmentsInADepartment : IFetchAReport<IEnumerable<DepartmentItem>>
