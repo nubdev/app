@@ -18,9 +18,20 @@ namespace app.specs
    
     public class when_fetching_a_dependency : concern
     {
-        
-      It should_ = () =>        
-        
+
+        Establish c = () =>
+        {
+            container = fake.an<Container>();
+            spec.change(() => container.an<IFetchDependencies>());
+        };
+        Because b = () =>
+        result = container.an<IFetchDependencies>();
+
+        private It should_fetch_a_dependency = () =>
+          result.ShouldEqual(container);
+
+      static IFetchDependencies result;
+      static Container container;
     }
   }
 }
