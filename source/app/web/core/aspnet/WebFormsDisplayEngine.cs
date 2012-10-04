@@ -1,6 +1,4 @@
-﻿using System.Web;
-
-namespace app.web.core.aspnet
+﻿namespace app.web.core.aspnet
 {
   public class WebFormsDisplayEngine : IDisplayInformation
   {
@@ -12,11 +10,6 @@ namespace app.web.core.aspnet
     {
       this.handler_factory = handler_factory;
       this.current_request_resolution = current_request_resolution;
-    }
-
-    public WebFormsDisplayEngine():this(new WebFormPageFactory(),
-                                        () => HttpContext.Current)
-    {
     }
 
     public void display<ReportModel>(ReportModel model)

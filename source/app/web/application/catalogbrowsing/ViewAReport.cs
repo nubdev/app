@@ -14,11 +14,6 @@ namespace app.web.application.catalogbrowsing
       this.query = query;
     }
 
-    public ViewAReport(IFetchAReport<Report> query):this(new WebFormsDisplayEngine(),
-      query)
-    {
-    }
-
     public void process(IEncapsulateRequestDetails request)
     {
       display_engine.display(query.fetch_using(request));

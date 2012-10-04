@@ -14,9 +14,6 @@ namespace app.web.core.aspnet
       this.request_factory = request_factory;
     }
 
-    public BasicHandler():this(new FrontController(),new StubRequestFactory())
-    {
-    }
 
     public void ProcessRequest(HttpContext context)
     {

@@ -1,6 +1,4 @@
 ﻿using System.Web;
-using System.Web.Compilation;
-using app.web.core.aspnet.stubs;
 
 namespace app.web.core.aspnet
 {
@@ -8,11 +6,6 @@ namespace app.web.core.aspnet
   {
     IFindPathsToAspxs path_registry;
     CreateRawPage_Behaviour asp_page_factory;
-
-    public WebFormPageFactory():this(new StubPathRegistry(),
-      BuildManager.CreateInstanceFromVirtualPath)
-    {
-    }
 
     public WebFormPageFactory(IFindPathsToAspxs path_registry, CreateRawPage_Behaviour asp_page_factory)
     {

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using app.web.core.stubs;
 
 namespace app.web.core
 {
@@ -15,15 +13,8 @@ namespace app.web.core
     CreateMissingCommand_Behaviour missing_command_factory;
     IEnumerable<IProcessOneRequest> commands { get; set; }
 
-    public CommandRegistry():this(new StubSetOfCommands(),
-                                  () =>
-                                  {
-                                    throw new NotImplementedException("We dont have a command for this");
-                                  })
-    {
-    }
-
-    public CommandRegistry(IEnumerable<IProcessOneRequest> all_commands,CreateMissingCommand_Behaviour missing_command_factory)
+    public CommandRegistry(IEnumerable<IProcessOneRequest> all_commands,
+                           CreateMissingCommand_Behaviour missing_command_factory)
     {
       this.missing_command_factory = missing_command_factory;
       commands = all_commands;

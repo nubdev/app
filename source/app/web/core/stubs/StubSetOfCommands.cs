@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Web;
 using app.web.application.catalogbrowsing;
 using app.web.application.catalogbrowsing.stubs;
 using app.web.core.aspnet;
@@ -23,7 +23,8 @@ namespace app.web.core.stubs
 
     IProcessOneRequest create_command_for_viewing<Report>(IFetchAReport<Report> query)
     {
-      return new RequestCommand(x => true, new ViewAReport<Report>(query));
+      //      return new RequestCommand(x => true, new ViewAReport<Report>(query));
+      throw new NotImplementedException();
     }
 
     public class GetTheDepartmentsInADepartment : IFetchAReport<IEnumerable<DepartmentItem>>

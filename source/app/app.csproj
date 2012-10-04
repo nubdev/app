@@ -78,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator.cs" />
+    <Compile Include="core\containers\Dependencies.cs" />
+    <Compile Include="core\containers\GetTheActiveContainer_Behaviour.cs" />
+    <Compile Include="core\containers\IFetchDependencies.cs" />
     <Compile Include="MessageGenerator.cs" />
     <Compile Include="web\application\catalogbrowsing\UserConstrainedQuery.cs" />
     <Compile Include="web\application\catalogbrowsing\DepartmentItem.cs" />
@@ -89,10 +92,7 @@
     <Compile Include="web\application\catalogbrowsing\ViewItemRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewProductsInADepartmentRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewSubDepartmentRequest.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewSubDepartments.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewAReport.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartment.cs" />
     <Compile Include="web\core\aspnet\BasicHandler.cs" />
     <Compile Include="web\core\aspnet\CreateRawPage_Behaviour.cs" />
     <Compile Include="web\core\aspnet\GetDataUsingRequest_Behaviour.cs" />
