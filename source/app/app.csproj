@@ -89,11 +89,12 @@
     <Compile Include="web\application\catalogbrowsing\ViewProductsInADepartmentRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewSubDepartmentRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewSubDepartments.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheData.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewAReport.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartment.cs" />
     <Compile Include="web\core\aspnet\BasicHandler.cs" />
     <Compile Include="web\core\aspnet\CreateRawPage_Behaviour.cs" />
+    <Compile Include="web\core\aspnet\GetDataUsingRequest_Behaviour.cs" />
     <Compile Include="web\core\aspnet\GetTheCurrentlyExecutingRequest_Behaviour.cs" />
     <Compile Include="web\core\aspnet\ICreateViewsForReports.cs" />
     <Compile Include="web\core\aspnet\IDisplayA.cs">
