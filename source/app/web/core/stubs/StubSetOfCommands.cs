@@ -15,12 +15,14 @@ namespace app.web.core.stubs
 
     public IEnumerator<IProcessOneRequest> GetEnumerator()
     {
-      yield return new RequestCommand(x => true, new ViewAReport<IEnumerable<ProductItem>>(
-                                                   new GetTheProductsInADepartment()));
-      yield return new RequestCommand(x => true, new ViewAReport<IEnumerable<DepartmentItem>>(
-                                                   new GetTheMainDepartments()));
-      yield return new RequestCommand(x => true, new ViewAReport<IEnumerable<DepartmentItem>>(
-                                                   new GetTheDepartmentsInADepartment()));
+      yield return create_command_for_viewing(new GetTheMainDepartments());
+      yield return create_command_for_viewing(new GetTheDepartmentsInADepartment());
+      yield return create_command_for_viewing(new GetTheProductsInADepartment());
+    }
+
+    ISupportAUserFeature create_command_for_viewing<Report>(IFetchAReport<Report> query)
+    {
+      return new RequestCommand(x => true, new ViewAReport<Report>(query));
     }
 
     public class GetTheDepartmentsInADepartment : IFetchAReport<IEnumerable<DepartmentItem>>
