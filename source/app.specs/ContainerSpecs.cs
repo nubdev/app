@@ -1,37 +1,47 @@
-﻿ using Machine.Specifications;
- using app.core.containers;
- using app.core.containers.basic;
- using developwithpassion.specifications.rhinomocks;
- using developwithpassion.specifications.extensions;
+﻿using Machine.Specifications;
+using app.core.containers;
+using app.core.containers.basic;
+using developwithpassion.specifications.rhinomocks;
+using developwithpassion.specifications.extensions;
 
 namespace app.specs
-{  
-  [Subject(typeof(Container))]  
+{
+  [Subject(typeof(Container))]
   public class ContainerSpecs
   {
     public abstract class concern : Observes<IFetchDependencies,
                                       Container>
     {
-        
     }
 
-   
     public class when_fetching_a_dependency : concern
     {
+      Establish c = () =>
+      {
+        the_concrete_type = fake.an<IAmADependency>();
+        item_factory = fake.an<ICreateOneDependency>();
+        dependency_factories = depends.on<IFindDependencyFactories>();
 
-        Establish c = () =>
-        {
-            container = fake.an<Container>();
-            spec.change(() => container.an<IFetchDependencies>());
-        };
-        Because b = () =>
-        result = container.an<IFetchDependencies>();
+        item_factory.setup(x => x.create()).Return(the_concrete_type);
 
-        private It should_fetch_a_dependency = () =>
-          result.ShouldEqual(container);
+        dependency_factories.setup(x => x.get_the_factory_that_can_create(typeof(IAmADependency)))
+          .Return(item_factory);
+      };
 
-      static IFetchDependencies result;
-      static Container container;
+      Because b = () =>
+        result = sut.an<IAmADependency>();
+
+      It should_return_the_item_created_by_the_item_factory_for_the_dependency = () =>
+        result.ShouldEqual(the_concrete_type);
+
+      static IAmADependency result;
+      static IAmADependency the_concrete_type;
+      static ICreateOneDependency item_factory;
+      static IFindDependencyFactories dependency_factories;
+    }
+
+    public interface IAmADependency
+    {
     }
   }
 }
