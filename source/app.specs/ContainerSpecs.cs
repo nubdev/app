@@ -44,6 +44,32 @@ namespace app.specs
         static IFindDependencyFactories dependency_factories;
       }
 
+      public class without_the_aid_of_generic_type_information
+      {
+        Establish c = () =>
+        {
+          the_concrete_type = fake.an<IAmADependency>();
+          item_factory = fake.an<ICreateOneDependency>();
+          dependency_factories = depends.on<IFindDependencyFactories>();
+
+
+          dependency_factories.setup(x => x.get_the_factory_that_can_create(typeof(IAmADependency)))
+            .Return(item_factory);
+
+          item_factory.setup(x => x.create()).Return(the_concrete_type);
+        };
+
+        Because b = () =>
+          result = sut.an(typeof(IAmADependency));
+
+        It should_return_the_item_created_by_the_item_factory_for_the_dependency = () =>
+          result.ShouldEqual(the_concrete_type);
+
+        static object result;
+        static IAmADependency the_concrete_type;
+        static ICreateOneDependency item_factory;
+        static IFindDependencyFactories dependency_factories;
+      }
       public class and_the_dependency_factory_for_the_dependency_throws_an_exception_while_creating_the_item
       {
         Establish c = () =>

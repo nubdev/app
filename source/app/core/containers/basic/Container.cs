@@ -25,5 +25,10 @@ namespace app.core.containers.basic
         throw failure_behaviour(typeof(Dependency), e);
       }
     }
+
+    public object an(Type dependency)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
