@@ -1,11 +1,12 @@
-﻿namespace app.core.containers.basic
+﻿using System;
+
+namespace app.core.containers.basic
 {
   public class Container:  IFetchDependencies
   {
-
     public Dependency an<Dependency>()
     {
-      throw new System.NotImplementedException();
+      throw new NotImplementedException();
     }
   }
 }
