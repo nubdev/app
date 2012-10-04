@@ -80,12 +80,16 @@
     <Compile Include="Calculator.cs" />
     <Compile Include="MessageGenerator.cs" />
     <Compile Include="web\application\catalogbrowsing\DepartmentItem.cs" />
+    <Compile Include="web\application\catalogbrowsing\IFindInformation.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindInformationInTheStore.cs" />
+    <Compile Include="web\application\catalogbrowsing\Item.cs" />
     <Compile Include="web\application\catalogbrowsing\ProductItem.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubStoreCatalog.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewItemRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewProductsInADepartmentRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewSubDepartmentRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewSubDepartments.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewTheData.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheProductsInADepartment.cs" />
     <Compile Include="web\core\aspnet\BasicHandler.cs" />

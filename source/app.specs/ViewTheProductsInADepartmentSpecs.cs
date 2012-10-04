@@ -21,8 +21,8 @@ namespace app.specs
         request = fake.an<IEncapsulateRequestDetails>();
         products_repository = depends.on<IFindInformationInTheStore>();
         display_engine = depends.on<IDisplayInformation>();
-        the_products = new List<ProductItem>();
-        product_request = new ViewProductsInADepartmentRequest();
+        the_products = new List<ProductItem>(); //List<Item>
+        product_request = new ViewProductsInADepartmentRequest(); //viewItemRequest
 
         products_repository.setup(x => x.get_the_products_using(product_request)).Return(the_products);
         request.setup(x => x.map<ViewProductsInADepartmentRequest >()).Return(product_request);
@@ -31,15 +31,15 @@ namespace app.specs
       Because b = () =>
         sut.process(request);
 
-      It should_display_the_products = () =>
-        display_engine.received(x => x.display(the_products));
+      It should_display_the_products = () => //should display the item
+        display_engine.received(x => x.display(the_products)); //display engine received the display of items
 
-      static IEncapsulateRequestDetails request;
+      static IEncapsulateRequestDetails request; //stay the same
 
-      static IFindInformationInTheStore products_repository;
-      static IDisplayInformation display_engine;
-      static IEnumerable<ProductItem> the_products;
-      static ViewProductsInADepartmentRequest product_request;
+      static IFindInformationInTheStore products_repository; //item_repository
+      static IDisplayInformation display_engine; //stays the same
+      static IEnumerable<ProductItem> the_products; //IEnumerable<Item>
+      static ViewProductsInADepartmentRequest product_request; //ViewOtemsRequest
     }
   }
 }
