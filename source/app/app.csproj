@@ -51,6 +51,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="developwithpassion.specifications, Version=0.4.24.2, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="developwithpassion.specifications.rhinomocks, Version=0.4.24.2, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Machine.Specifications, Version=0.4.24.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -86,6 +89,8 @@
     <Compile Include="core\containers\IFindDependencyFactories.cs" />
     <Compile Include="core\containers\ItemCreationFailure_Behaviour.cs" />
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="MicroMachines\Grid.cs" />
+    <Compile Include="MicroMachines\MicroMachine.cs" />
     <Compile Include="web\application\catalogbrowsing\UserConstrainedQuery.cs" />
     <Compile Include="web\application\catalogbrowsing\DepartmentItem.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindInformation.cs" />
