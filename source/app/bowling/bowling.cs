@@ -55,11 +55,11 @@ namespace app.bowling
     [Subject(typeof(bowling))]
     public class BowlingSpecs
     {
-        public abstract class bowling_concern : Observes<bowling>
-        {
-        }
+        //public abstract class bowling_concern : Observes<bowling>
+        //{
+        //}
 
-        public class when_throwing_a_ball : bowling_concern
+        public class when_throwing_a_ball
         {
             Establish c = () =>
             {
@@ -78,7 +78,7 @@ namespace app.bowling
             static int score;
 
         }
-        public class when_scoring_a_frame : bowling_concern
+        public class when_scoring_a_frame
         {
             Establish c = () =>
             {
@@ -96,7 +96,7 @@ namespace app.bowling
             static scorer scorer_obj;
             static int score;
         }
-        public class when_scoring_a_game : bowling_concern
+        public class when_scoring_a_game
         {
             Establish c = () =>
             {
